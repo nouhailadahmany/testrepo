@@ -246,3 +246,73 @@ Daily campaign performance metrics — grain: campaign × date × channel
 | CHANNEL_BREAKDOWN | VARCHAR(50) | channel_breakdown | Channel Breakdown | Channel or sub-channel identifier for the performance record. |
 | CREATIVE_VERSION | VARCHAR(50) | creative_version | Creative Version | Creative variant/version identifier used for the campaign. |
 | CREATED_AT | TIMESTAMP_NTZ(9) | created_at | Created At | Timestamp when the record was created. |
+
+
+## Inventory Fact (`RETAIL_DWH.CORE.FACT_INVENTORY`)
+
+Daily inventory snapshot — grain: product × store × date
+
+### Columns
+
+| Column | Data type | Standardized name | Business name | Description |
+|---|---|---|---|---|
+| INVENTORY_KEY | NUMBER(38,0) | inventory_key | Inventory Key | Surrogate key that uniquely identifies an inventory snapshot record. |
+| DATE_KEY | NUMBER(38,0) | date_key | Date Key | Surrogate key referencing the snapshot date. |
+| PRODUCT_KEY | NUMBER(38,0) | product_key | Product Key | Surrogate key referencing the product. |
+| STORE_KEY | NUMBER(38,0) | store_key | Store Key | Surrogate key referencing the store. |
+| GEO_KEY | NUMBER(38,0) | geo_key | Geography Key | Surrogate key referencing the geography context for the snapshot. |
+| OPENING_STOCK | NUMBER(38,0) | opening_stock | Opening Stock | Units on hand at the start of the day/snapshot period. |
+| CLOSING_STOCK | NUMBER(38,0) | closing_stock | Closing Stock | Units on hand at the end of the day/snapshot period. |
+| UNITS_RECEIVED | NUMBER(38,0) | units_received | Units Received | Units received into inventory during the period. |
+| UNITS_SOLD | NUMBER(38,0) | units_sold | Units Sold | Units sold (inventory depletion) during the period. |
+| UNITS_RETURNED | NUMBER(38,0) | units_returned | Units Returned | Units returned into inventory during the period. |
+| UNITS_DAMAGED | NUMBER(38,0) | units_damaged | Units Damaged | Units marked as damaged during the period. |
+| UNITS_WRITTEN_OFF | NUMBER(38,0) | units_written_off | Units Written Off | Units written off (e.g., shrinkage/expiration) during the period. |
+| STOCK_VALUE_COST | NUMBER(14,4) | stock_value_cost | Stock Value (Cost) | Inventory value at cost for the snapshot/grain. |
+| STOCK_VALUE_RETAIL | NUMBER(14,4) | stock_value_retail | Stock Value (Retail) | Inventory value at retail price for the snapshot/grain. |
+| IS_OUT_OF_STOCK | BOOLEAN | is_out_of_stock | Is Out of Stock | Indicates whether the item is out of stock at the snapshot time. |
+| IS_LOW_STOCK | BOOLEAN | is_low_stock | Is Low Stock | Indicates whether the item is below a low-stock threshold at the snapshot time. |
+| DAYS_OF_SUPPLY | NUMBER(8,2) | days_of_supply | Days of Supply | Estimated number of days inventory will last based on expected demand. |
+| CREATED_AT | TIMESTAMP_NTZ(9) | created_at | Created At | Timestamp when the record was created. |
+
+## Sales Fact (`RETAIL_DWH.CORE.FACT_SALES`)
+
+Core transactional sales fact table — grain: one row per order line
+
+### Columns
+
+| Column | Data type | Standardized name | Business name | Description |
+|---|---|---|---|---|
+| SALE_KEY | NUMBER(38,0) | sale_key | Sale Key | Surrogate key that uniquely identifies a sales order line record. |
+| ORDER_ID | VARCHAR(30) | order_id | Order ID | Business identifier for the order. |
+| ORDER_LINE_ID | VARCHAR(30) | order_line_id | Order Line ID | Business identifier for the order line. |
+| DATE_KEY | NUMBER(38,0) | date_key | Date Key | Surrogate key referencing the order/sale date. |
+| CUSTOMER_KEY | NUMBER(38,0) | customer_key | Customer Key | Surrogate key referencing the customer. |
+| PRODUCT_KEY | NUMBER(38,0) | product_key | Product Key | Surrogate key referencing the product. |
+| STORE_KEY | NUMBER(38,0) | store_key | Store Key | Surrogate key referencing the store/channel where the sale occurred. |
+| GEO_KEY | NUMBER(38,0) | geo_key | Geography Key | Surrogate key referencing the geography context for the sale. |
+| CAMPAIGN_KEY | NUMBER(38,0) | campaign_key | Campaign Key | Surrogate key referencing the attributed campaign, when applicable. |
+| PROMO_KEY | NUMBER(38,0) | promo_key | Promotion Key | Surrogate key referencing the promotion applied, when applicable. |
+| QUANTITY | NUMBER(38,0) | quantity | Quantity | Number of units sold on the order line. |
+| UNIT_PRICE | NUMBER(12,4) | unit_price | Unit Price | Unit selling price for the order line in the transaction currency. |
+| UNIT_COST | NUMBER(12,4) | unit_cost | Unit Cost | Unit cost for the product on the order line in the transaction currency. |
+| GROSS_PRICE | NUMBER(14,4) | gross_price | Gross Price | Gross line amount before discounts and taxes, when populated. |
+| DISCOUNT_AMOUNT | NUMBER(12,4) | discount_amount | Discount Amount | Discount amount applied to the order line. |
+| NET_PRICE | NUMBER(14,4) | net_price | Net Price | Net line amount after discounts (and before or after tax depending on convention), when populated. |
+| TOTAL_COST | NUMBER(14,4) | total_cost | Total Cost | Total cost for the line (typically unit cost × quantity), when populated. |
+| GROSS_MARGIN | NUMBER(14,4) | gross_margin | Gross Margin | Gross margin amount for the order line, when populated. |
+| TAX_RATE | NUMBER(6,4) | tax_rate | Tax Rate | Tax rate applied to the order line. |
+| TAX_AMOUNT | NUMBER(12,4) | tax_amount | Tax Amount | Tax amount applied to the order line. |
+| SHIPPING_COST | NUMBER(10,4) | shipping_cost | Shipping Cost | Shipping cost allocated to the order line, when applicable. |
+| IS_RETURNED | BOOLEAN | is_returned | Is Returned | Indicates whether the order line was returned. |
+| RETURN_DATE_KEY | NUMBER(38,0) | return_date_key | Return Date Key | Surrogate key referencing the return date, when applicable. |
+| RETURN_REASON | VARCHAR(100) | return_reason | Return Reason | Reason provided for the return, when applicable. |
+| LOYALTY_POINTS_EARNED | NUMBER(38,0) | loyalty_points_earned | Loyalty Points Earned | Loyalty points earned for the order line. |
+| CURRENCY | VARCHAR(3) | currency | Currency | ISO currency code for transaction amounts. |
+| FX_RATE_TO_EUR | NUMBER(10,6) | fx_rate_to_eur | FX Rate to EUR | Foreign exchange rate used to convert transaction currency to EUR. |
+| NET_PRICE_EUR | NUMBER(14,4) | net_price_eur | Net Price (EUR) | Net line amount converted to EUR. |
+| GROSS_MARGIN_EUR | NUMBER(14,4) | gross_margin_eur | Gross Margin (EUR) | Gross margin amount converted to EUR. |
+| ORDER_SOURCE | VARCHAR(50) | order_source | Order Source | Source of the order (e.g., web, store, marketplace). |
+| PAYMENT_METHOD | VARCHAR(50) | payment_method | Payment Method | Payment method used for the order. |
+| FULFILLMENT_STATUS | VARCHAR(30) | fulfillment_status | Fulfillment Status | Fulfillment/delivery status of the order line. |
+| CREATED_AT | TIMESTAMP_NTZ(9) | created_at | Created At | Timestamp when the record was created. |
