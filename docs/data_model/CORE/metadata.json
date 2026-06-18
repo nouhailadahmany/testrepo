@@ -1,0 +1,400 @@
+{
+  "database": "RETAIL_DWH",
+  "warehouse": "COMPUTE_WH",
+  "schema": "CORE",
+  "generated_at": "2026-06-18",
+  "data_model_summary": {
+    "tables_count": 10,
+    "columns_count": 223,
+    "constraints_present": true,
+    "constraints_notes": "Primary/unique constraints present; referential constraints present but FK column mappings not retrieved, so relationships are mapped by naming."
+  },
+  "table_classification": [
+    {
+      "table_name": "DIM_CAMPAIGN",
+      "table_type": "BASE TABLE",
+      "classification": "DIMENSION",
+      "confidence": "high",
+      "key_candidates": [
+        "CAMPAIGN_KEY"
+      ]
+    },
+    {
+      "table_name": "DIM_CUSTOMER",
+      "table_type": "BASE TABLE",
+      "classification": "DIMENSION",
+      "confidence": "high",
+      "key_candidates": [
+        "CUSTOMER_KEY"
+      ]
+    },
+    {
+      "table_name": "DIM_DATE",
+      "table_type": "BASE TABLE",
+      "classification": "DIMENSION",
+      "confidence": "high",
+      "key_candidates": [
+        "DATE_KEY"
+      ]
+    },
+    {
+      "table_name": "DIM_GEOGRAPHY",
+      "table_type": "BASE TABLE",
+      "classification": "DIMENSION",
+      "confidence": "high",
+      "key_candidates": [
+        "GEO_KEY"
+      ]
+    },
+    {
+      "table_name": "DIM_PRODUCT",
+      "table_type": "BASE TABLE",
+      "classification": "DIMENSION",
+      "confidence": "high",
+      "key_candidates": [
+        "PRODUCT_KEY"
+      ]
+    },
+    {
+      "table_name": "DIM_PROMOTION",
+      "table_type": "BASE TABLE",
+      "classification": "DIMENSION",
+      "confidence": "high",
+      "key_candidates": [
+        "PROMO_KEY"
+      ]
+    },
+    {
+      "table_name": "DIM_STORE",
+      "table_type": "BASE TABLE",
+      "classification": "DIMENSION",
+      "confidence": "high",
+      "key_candidates": [
+        "STORE_KEY"
+      ]
+    },
+    {
+      "table_name": "FACT_CAMPAIGN_PERFORMANCE",
+      "table_type": "BASE TABLE",
+      "classification": "FACT",
+      "confidence": "high",
+      "key_candidates": [
+        "PERF_KEY"
+      ]
+    },
+    {
+      "table_name": "FACT_INVENTORY",
+      "table_type": "BASE TABLE",
+      "classification": "FACT",
+      "confidence": "high",
+      "key_candidates": [
+        "INVENTORY_KEY"
+      ]
+    },
+    {
+      "table_name": "FACT_SALES",
+      "table_type": "BASE TABLE",
+      "classification": "FACT",
+      "confidence": "high",
+      "key_candidates": [
+        "SALE_KEY"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_table": "DIM_CUSTOMER",
+      "from_columns": [
+        "GEO_KEY"
+      ],
+      "to_table": "DIM_GEOGRAPHY",
+      "to_columns": [
+        "GEO_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "DIM_STORE",
+      "from_columns": [
+        "GEO_KEY"
+      ],
+      "to_table": "DIM_GEOGRAPHY",
+      "to_columns": [
+        "GEO_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "DIM_PROMOTION",
+      "from_columns": [
+        "CAMPAIGN_KEY"
+      ],
+      "to_table": "DIM_CAMPAIGN",
+      "to_columns": [
+        "CAMPAIGN_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_SALES",
+      "from_columns": [
+        "DATE_KEY"
+      ],
+      "to_table": "DIM_DATE",
+      "to_columns": [
+        "DATE_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_SALES",
+      "from_columns": [
+        "CUSTOMER_KEY"
+      ],
+      "to_table": "DIM_CUSTOMER",
+      "to_columns": [
+        "CUSTOMER_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_SALES",
+      "from_columns": [
+        "PRODUCT_KEY"
+      ],
+      "to_table": "DIM_PRODUCT",
+      "to_columns": [
+        "PRODUCT_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_SALES",
+      "from_columns": [
+        "STORE_KEY"
+      ],
+      "to_table": "DIM_STORE",
+      "to_columns": [
+        "STORE_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_SALES",
+      "from_columns": [
+        "GEO_KEY"
+      ],
+      "to_table": "DIM_GEOGRAPHY",
+      "to_columns": [
+        "GEO_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_SALES",
+      "from_columns": [
+        "CAMPAIGN_KEY"
+      ],
+      "to_table": "DIM_CAMPAIGN",
+      "to_columns": [
+        "CAMPAIGN_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_SALES",
+      "from_columns": [
+        "PROMO_KEY"
+      ],
+      "to_table": "DIM_PROMOTION",
+      "to_columns": [
+        "PROMO_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_INVENTORY",
+      "from_columns": [
+        "DATE_KEY"
+      ],
+      "to_table": "DIM_DATE",
+      "to_columns": [
+        "DATE_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_INVENTORY",
+      "from_columns": [
+        "PRODUCT_KEY"
+      ],
+      "to_table": "DIM_PRODUCT",
+      "to_columns": [
+        "PRODUCT_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_INVENTORY",
+      "from_columns": [
+        "STORE_KEY"
+      ],
+      "to_table": "DIM_STORE",
+      "to_columns": [
+        "STORE_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_INVENTORY",
+      "from_columns": [
+        "GEO_KEY"
+      ],
+      "to_table": "DIM_GEOGRAPHY",
+      "to_columns": [
+        "GEO_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_CAMPAIGN_PERFORMANCE",
+      "from_columns": [
+        "DATE_KEY"
+      ],
+      "to_table": "DIM_DATE",
+      "to_columns": [
+        "DATE_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_CAMPAIGN_PERFORMANCE",
+      "from_columns": [
+        "CAMPAIGN_KEY"
+      ],
+      "to_table": "DIM_CAMPAIGN",
+      "to_columns": [
+        "CAMPAIGN_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_CAMPAIGN_PERFORMANCE",
+      "from_columns": [
+        "STORE_KEY"
+      ],
+      "to_table": "DIM_STORE",
+      "to_columns": [
+        "STORE_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_CAMPAIGN_PERFORMANCE",
+      "from_columns": [
+        "GEO_KEY"
+      ],
+      "to_table": "DIM_GEOGRAPHY",
+      "to_columns": [
+        "GEO_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "medium",
+      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+    }
+  ],
+  "transformation_patterns": [
+    {
+      "pattern_type": "keys",
+      "examples": [
+        "DATE_KEY",
+        "CUSTOMER_KEY",
+        "PRODUCT_KEY",
+        "STORE_KEY",
+        "GEO_KEY",
+        "CAMPAIGN_KEY",
+        "PROMO_KEY"
+      ]
+    },
+    {
+      "pattern_type": "date",
+      "examples": [
+        "FULL_DATE",
+        "START_DATE",
+        "END_DATE",
+        "OPENING_DATE",
+        "CLOSING_DATE",
+        "RETURN_DATE_KEY",
+        "EFF_START_DATE",
+        "EFF_END_DATE"
+      ]
+    },
+    {
+      "pattern_type": "flags",
+      "examples": [
+        "IS_ACTIVE",
+        "IS_NEWSLETTER",
+        "IS_CURRENT",
+        "IS_WEEKEND",
+        "IS_HOLIDAY",
+        "IS_OUT_OF_STOCK",
+        "IS_LOW_STOCK",
+        "IS_RETURNED"
+      ]
+    },
+    {
+      "pattern_type": "aggregation/metrics",
+      "examples": [
+        "QUANTITY",
+        "DISCOUNT_AMOUNT",
+        "NET_PRICE",
+        "TOTAL_COST",
+        "GROSS_MARGIN",
+        "SPEND",
+        "REVENUE_ATTRIBUTED",
+        "ROAS",
+        "CTR",
+        "CVR",
+        "CPC",
+        "CPM",
+        "CPA",
+        "OPENING_STOCK",
+        "CLOSING_STOCK"
+      ]
+    }
+  ]
+}
