@@ -1,21 +1,13 @@
 {
-  "database": "RETAIL_DWH",
-  "warehouse": "COMPUTE_WH",
-  "schema": "MARTS",
-  "generated_at": "2026-06-18",
-  "data_model_summary": {
-    "tables_count": 5,
-    "columns_count": 128,
-    "constraints_present": false,
-    "constraints_notes": "No constraints returned for views."
-  },
+  "schema_name": "MARTS",
   "table_classification": [
     {
       "table_name": "V_CAMPAIGN_ROI",
       "table_type": "VIEW",
       "classification": "FACT",
       "confidence": "medium",
-      "key_candidates": []
+      "key_candidates": [],
+      "notes": "Aggregated KPIs (TOTAL_*, ROAS, CTR_PCT, CVR_PCT)."
     },
     {
       "table_name": "V_CUSTOMER_360",
@@ -24,14 +16,16 @@
       "confidence": "medium",
       "key_candidates": [
         "CUSTOMER_ID"
-      ]
+      ],
+      "notes": "Customer profile with aggregated measures (TOTAL_*)."
     },
     {
       "table_name": "V_INVENTORY_HEALTH",
       "table_type": "VIEW",
       "classification": "FACT",
       "confidence": "medium",
-      "key_candidates": []
+      "key_candidates": [],
+      "notes": "Inventory measures + derived status."
     },
     {
       "table_name": "V_PRODUCT_PERFORMANCE",
@@ -40,42 +34,19 @@
       "confidence": "medium",
       "key_candidates": [
         "PRODUCT_ID"
-      ]
+      ],
+      "notes": "Product performance aggregates (NET_REVENUE_EUR, GROSS_PROFIT_EUR, UNIQUE_CUSTOMERS)."
     },
     {
       "table_name": "V_SALES_PERFORMANCE",
       "table_type": "VIEW",
       "classification": "FACT",
       "confidence": "medium",
-      "key_candidates": []
+      "key_candidates": [],
+      "notes": "Sales reporting view with measures and breakdown attributes."
     }
   ],
-  "relationships": [
-    {
-      "from_table": "V_SALES_PERFORMANCE",
-      "from_columns": [
-        "FULL_DATE"
-      ],
-      "to_table": "V_INVENTORY_HEALTH",
-      "to_columns": [
-        "FULL_DATE"
-      ],
-      "relationship_type": "join_candidate",
-      "confidence": "low",
-      "basis": "Same column name suggests join possibility; view lineage not retrieved."
-    },
-    {
-      "from_table": "V_PRODUCT_PERFORMANCE",
-      "from_columns": [
-        "PRODUCT_ID"
-      ],
-      "to_table": "V_INVENTORY_HEALTH",
-      "to_columns": [],
-      "relationship_type": "join_candidate",
-      "confidence": "low",
-      "basis": "Shared product attributes (PRODUCT_NAME/BRAND/CATEGORY_L1) suggest join possibility; no explicit keys available in view metadata."
-    }
-  ],
+  "relationships": [],
   "transformation_patterns": [
     {
       "pattern_type": "aggregation",
@@ -96,11 +67,11 @@
       "pattern_type": "date",
       "examples": [
         "FULL_DATE",
+        "LAST_ORDER_DATE",
+        "FIRST_ORDER_DATE",
         "YEAR",
         "MONTH_NAME",
-        "QUARTER_NAME",
-        "LAST_ORDER_DATE",
-        "FIRST_ORDER_DATE"
+        "QUARTER_NAME"
       ]
     },
     {
@@ -113,5 +84,11 @@
         "IS_RETURNED"
       ]
     }
-  ]
+  ],
+  "data_model_summary": {
+    "tables_count": 5,
+    "columns_count": 128,
+    "constraints_present": false,
+    "constraints_notes": "No constraints returned for this schema (views)."
+  }
 }
