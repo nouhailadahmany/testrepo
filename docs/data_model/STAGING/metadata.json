@@ -1,0 +1,112 @@
+{
+  "database": "RETAIL_DWH",
+  "warehouse": "COMPUTE_WH",
+  "schema": "STAGING",
+  "generated_at": "2026-06-18",
+  "data_model_summary": {
+    "tables_count": 3,
+    "columns_count": 46,
+    "constraints_present": true,
+    "constraints_notes": "PK constraints present on each staging table; no referential constraints returned for this schema."
+  },
+  "table_classification": [
+    {
+      "table_name": "STG_CAMPAIGN_METRICS_RAW",
+      "table_type": "BASE TABLE",
+      "classification": "FACT",
+      "confidence": "low",
+      "key_candidates": [
+        "RAW_ID"
+      ]
+    },
+    {
+      "table_name": "STG_INVENTORY_RAW",
+      "table_type": "BASE TABLE",
+      "classification": "FACT",
+      "confidence": "low",
+      "key_candidates": [
+        "RAW_ID"
+      ]
+    },
+    {
+      "table_name": "STG_SALES_RAW",
+      "table_type": "BASE TABLE",
+      "classification": "FACT",
+      "confidence": "low",
+      "key_candidates": [
+        "RAW_ID"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_table": "STG_SALES_RAW",
+      "from_columns": [
+        "PRODUCT_ID"
+      ],
+      "to_table": "STG_INVENTORY_RAW",
+      "to_columns": [
+        "PRODUCT_ID"
+      ],
+      "relationship_type": "join_candidate",
+      "confidence": "low",
+      "basis": "Shared natural key-like column PRODUCT_ID in raw staging tables."
+    },
+    {
+      "from_table": "STG_SALES_RAW",
+      "from_columns": [
+        "STORE_ID"
+      ],
+      "to_table": "STG_INVENTORY_RAW",
+      "to_columns": [
+        "STORE_ID"
+      ],
+      "relationship_type": "join_candidate",
+      "confidence": "low",
+      "basis": "Shared natural key-like column STORE_ID in raw staging tables."
+    },
+    {
+      "from_table": "STG_CAMPAIGN_METRICS_RAW",
+      "from_columns": [
+        "CAMPAIGN_ID"
+      ],
+      "to_table": "STG_SALES_RAW",
+      "to_columns": [],
+      "relationship_type": "join_candidate",
+      "confidence": "low",
+      "basis": "CAMPAIGN_ID present in campaign metrics staging; no corresponding column in STG_SALES_RAW, so no direct join inferred."
+    }
+  ],
+  "transformation_patterns": [
+    {
+      "pattern_type": "raw_variant",
+      "examples": [
+        "RAW_JSON"
+      ]
+    },
+    {
+      "pattern_type": "ingestion_audit",
+      "examples": [
+        "SOURCE_SYSTEM",
+        "SOURCE_FILE",
+        "BATCH_ID",
+        "LOAD_TIMESTAMP",
+        "ERROR_MESSAGE"
+      ]
+    },
+    {
+      "pattern_type": "flags",
+      "examples": [
+        "IS_PROCESSED"
+      ]
+    },
+    {
+      "pattern_type": "date_as_text",
+      "examples": [
+        "ORDER_DATE",
+        "SNAPSHOT_DATE",
+        "REPORT_DATE"
+      ]
+    }
+  ]
+}
