@@ -1,0 +1,117 @@
+{
+  "database": "RETAIL_DWH",
+  "warehouse": "COMPUTE_WH",
+  "schema": "MARTS",
+  "generated_at": "2026-06-18",
+  "data_model_summary": {
+    "tables_count": 5,
+    "columns_count": 128,
+    "constraints_present": false,
+    "constraints_notes": "No constraints returned for views."
+  },
+  "table_classification": [
+    {
+      "table_name": "V_CAMPAIGN_ROI",
+      "table_type": "VIEW",
+      "classification": "FACT",
+      "confidence": "medium",
+      "key_candidates": []
+    },
+    {
+      "table_name": "V_CUSTOMER_360",
+      "table_type": "VIEW",
+      "classification": "DIMENSION",
+      "confidence": "medium",
+      "key_candidates": [
+        "CUSTOMER_ID"
+      ]
+    },
+    {
+      "table_name": "V_INVENTORY_HEALTH",
+      "table_type": "VIEW",
+      "classification": "FACT",
+      "confidence": "medium",
+      "key_candidates": []
+    },
+    {
+      "table_name": "V_PRODUCT_PERFORMANCE",
+      "table_type": "VIEW",
+      "classification": "FACT",
+      "confidence": "medium",
+      "key_candidates": [
+        "PRODUCT_ID"
+      ]
+    },
+    {
+      "table_name": "V_SALES_PERFORMANCE",
+      "table_type": "VIEW",
+      "classification": "FACT",
+      "confidence": "medium",
+      "key_candidates": []
+    }
+  ],
+  "relationships": [
+    {
+      "from_table": "V_SALES_PERFORMANCE",
+      "from_columns": [
+        "FULL_DATE"
+      ],
+      "to_table": "V_INVENTORY_HEALTH",
+      "to_columns": [
+        "FULL_DATE"
+      ],
+      "relationship_type": "join_candidate",
+      "confidence": "low",
+      "basis": "Same column name suggests join possibility; view lineage not retrieved."
+    },
+    {
+      "from_table": "V_PRODUCT_PERFORMANCE",
+      "from_columns": [
+        "PRODUCT_ID"
+      ],
+      "to_table": "V_INVENTORY_HEALTH",
+      "to_columns": [],
+      "relationship_type": "join_candidate",
+      "confidence": "low",
+      "basis": "Shared product attributes (PRODUCT_NAME/BRAND/CATEGORY_L1) suggest join possibility; no explicit keys available in view metadata."
+    }
+  ],
+  "transformation_patterns": [
+    {
+      "pattern_type": "aggregation",
+      "examples": [
+        "TOTAL_IMPRESSIONS",
+        "TOTAL_CLICKS",
+        "TOTAL_CONVERSIONS",
+        "TOTAL_SPEND",
+        "TOTAL_REVENUE_ATTRIBUTED",
+        "TOTAL_ORDERS",
+        "TOTAL_UNITS",
+        "TOTAL_SPEND_EUR",
+        "AVG_ORDER_VALUE_EUR",
+        "UNIQUE_CUSTOMERS"
+      ]
+    },
+    {
+      "pattern_type": "date",
+      "examples": [
+        "FULL_DATE",
+        "YEAR",
+        "MONTH_NAME",
+        "QUARTER_NAME",
+        "LAST_ORDER_DATE",
+        "FIRST_ORDER_DATE"
+      ]
+    },
+    {
+      "pattern_type": "flags",
+      "examples": [
+        "IS_ACTIVE",
+        "IS_NEWSLETTER",
+        "IS_OUT_OF_STOCK",
+        "IS_LOW_STOCK",
+        "IS_RETURNED"
+      ]
+    }
+  ]
+}
