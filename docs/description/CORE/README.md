@@ -117,3 +117,69 @@ Geographic reference dimension for all regional analysis
 | POPULATION_BAND | VARCHAR(20) | population_band | Population Band | Population size grouping/band for the geography. |
 | CREATED_AT | TIMESTAMP_NTZ(9) | created_at | Created At | Timestamp when the record was created. |
 | UPDATED_AT | TIMESTAMP_NTZ(9) | updated_at | Updated At | Timestamp when the record was last updated. |
+
+
+## Product Dimension (`RETAIL_DWH.CORE.DIM_PRODUCT`)
+
+Product master dimension with full commercial and formulation attributes
+
+### Columns
+
+| Column | Data type | Standardized name | Business name | Description |
+|---|---|---|---|---|
+| PRODUCT_KEY | NUMBER(38,0) | product_key | Product Key | Surrogate key that uniquely identifies a product record. |
+| PRODUCT_ID | VARCHAR(20) | product_id | Product ID | Business/natural identifier for the product from the source system. |
+| PRODUCT_NAME | VARCHAR(200) | product_name | Product Name | Human-readable product name. |
+| PRODUCT_SHORT_NAME | VARCHAR(100) | product_short_name | Product Short Name | Short/abbreviated name for the product. |
+| BRAND | VARCHAR(100) | brand | Brand | Brand associated with the product. |
+| CATEGORY_L1 | VARCHAR(100) | category_l1 | Category Level 1 | Top-level product category. |
+| CATEGORY_L2 | VARCHAR(100) | category_l2 | Category Level 2 | Second-level product category. |
+| CATEGORY_L3 | VARCHAR(100) | category_l3 | Category Level 3 | Third-level product category. |
+| SKU | VARCHAR(50) | sku | SKU | Stock keeping unit identifier. |
+| BARCODE | VARCHAR(50) | barcode | Barcode | Barcode/UPC/EAN value for the product. |
+| UNIT_COST | NUMBER(12,4) | unit_cost | Unit Cost | Cost per unit in the specified currency. |
+| UNIT_PRICE | NUMBER(12,4) | unit_price | Unit Price | List/standard selling price per unit in the specified currency. |
+| GROSS_MARGIN_PCT | NUMBER(6,4) | gross_margin_pct | Gross Margin Percent | Gross margin percentage for the product. |
+| CURRENCY | VARCHAR(3) | currency | Currency | ISO currency code for product financial amounts. |
+| WEIGHT_GRAMS | NUMBER(38,0) | weight_grams | Weight (Grams) | Product weight in grams. |
+| VOLUME_ML | NUMBER(38,0) | volume_ml | Volume (mL) | Product volume in milliliters. |
+| SIZE_LABEL | VARCHAR(30) | size_label | Size Label | Human-readable size descriptor (e.g., 50ml, Large). |
+| COLOR | VARCHAR(50) | color | Color | Color attribute of the product, when applicable. |
+| FORMULATION_TYPE | VARCHAR(100) | formulation_type | Formulation Type | Formulation or product type classification. |
+| TARGET_GENDER | VARCHAR(20) | target_gender | Target Gender | Intended target gender segment for the product. |
+| TARGET_AGE_RANGE | VARCHAR(20) | target_age_range | Target Age Range | Intended target age range segment for the product. |
+| KEY_INGREDIENTS | VARCHAR(500) | key_ingredients | Key Ingredients | Key ingredients or composition notes. |
+| LAUNCH_DATE | DATE | launch_date | Launch Date | Product launch date. |
+| DISCONTINUE_DATE | DATE | discontinue_date | Discontinue Date | Date the product was discontinued, if applicable. |
+| IS_ACTIVE | BOOLEAN | is_active | Is Active | Indicates whether the product is active. |
+| IS_HERO_PRODUCT | BOOLEAN | is_hero_product | Is Hero Product | Indicates whether the product is designated as a hero/key product. |
+| SUSTAINABILITY_SCORE | NUMBER(4,2) | sustainability_score | Sustainability Score | Sustainability rating/score for the product. |
+| COUNTRY_OF_ORIGIN | VARCHAR(3) | country_of_origin | Country of Origin | Country of origin code for the product. |
+| SUPPLIER_ID | VARCHAR(20) | supplier_id | Supplier ID | Identifier of the supplier providing the product. |
+| REORDER_POINT | NUMBER(38,0) | reorder_point | Reorder Point | Inventory level at which replenishment should be triggered. |
+| REORDER_QUANTITY | NUMBER(38,0) | reorder_quantity | Reorder Quantity | Default quantity to reorder when replenishing inventory. |
+| CREATED_AT | TIMESTAMP_NTZ(9) | created_at | Created At | Timestamp when the record was created. |
+| UPDATED_AT | TIMESTAMP_NTZ(9) | updated_at | Updated At | Timestamp when the record was last updated. |
+
+## Promotion Dimension (`RETAIL_DWH.CORE.DIM_PROMOTION`)
+
+Promotion and discount dimension linked to marketing campaigns
+
+### Columns
+
+| Column | Data type | Standardized name | Business name | Description |
+|---|---|---|---|---|
+| PROMO_KEY | NUMBER(38,0) | promo_key | Promotion Key | Surrogate key that uniquely identifies a promotion record. |
+| PROMO_ID | VARCHAR(20) | promo_id | Promotion ID | Business/natural identifier for the promotion from the source system. |
+| PROMO_NAME | VARCHAR(200) | promo_name | Promotion Name | Human-readable name of the promotion. |
+| PROMO_TYPE | VARCHAR(50) | promo_type | Promotion Type | Classification/type of promotion. |
+| DISCOUNT_TYPE | VARCHAR(30) | discount_type | Discount Type | Type of discount (e.g., percent off, amount off). |
+| DISCOUNT_VALUE | NUMBER(8,4) | discount_value | Discount Value | Discount value corresponding to the discount type. |
+| MIN_PURCHASE_AMT | NUMBER(10,2) | min_purchase_amt | Minimum Purchase Amount | Minimum purchase amount required to qualify for the promotion. |
+| MAX_DISCOUNT_AMT | NUMBER(10,2) | max_discount_amt | Maximum Discount Amount | Maximum discount amount allowed for the promotion. |
+| START_DATE | DATE | start_date | Start Date | Promotion start date. |
+| END_DATE | DATE | end_date | End Date | Promotion end date. |
+| IS_STACKABLE | BOOLEAN | is_stackable | Is Stackable | Indicates whether the promotion can be combined with other promotions. |
+| IS_LOYALTY_ONLY | BOOLEAN | is_loyalty_only | Is Loyalty Only | Indicates whether the promotion is restricted to loyalty members. |
+| CAMPAIGN_KEY | NUMBER(38,0) | campaign_key | Campaign Key | Surrogate key referencing the related campaign, when applicable. |
+| CREATED_AT | TIMESTAMP_NTZ(9) | created_at | Created At | Timestamp when the record was created. |
