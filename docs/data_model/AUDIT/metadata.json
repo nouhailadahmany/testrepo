@@ -1,14 +1,5 @@
 {
-  "database": "RETAIL_DWH",
-  "warehouse": "COMPUTE_WH",
-  "schema": "AUDIT",
-  "generated_at": "2026-06-18",
-  "data_model_summary": {
-    "tables_count": 2,
-    "columns_count": 30,
-    "constraints_present": true,
-    "constraints_notes": "PK constraints present; no referential constraints returned for this schema."
-  },
+  "schema_name": "AUDIT",
   "table_classification": [
     {
       "table_name": "DQ_LOG",
@@ -17,7 +8,8 @@
       "confidence": "medium",
       "key_candidates": [
         "DQ_LOG_ID"
-      ]
+      ],
+      "notes": "Log/metrics table with counts/rates/timestamps."
     },
     {
       "table_name": "LOAD_LOG",
@@ -26,7 +18,8 @@
       "confidence": "medium",
       "key_candidates": [
         "LOG_ID"
-      ]
+      ],
+      "notes": "Pipeline load metrics (rows_*, timestamps, status)."
     }
   ],
   "relationships": [],
@@ -60,5 +53,11 @@
         "BATCH_ID"
       ]
     }
-  ]
+  ],
+  "data_model_summary": {
+    "tables_count": 2,
+    "columns_count": 30,
+    "constraints_present": true,
+    "constraints_notes": "TABLE_CONSTRAINTS returned PKs; KEY_COLUMN_USAGE not accessible, so PK/FK column mappings unavailable."
+  }
 }
