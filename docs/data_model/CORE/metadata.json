@@ -1,14 +1,5 @@
 {
-  "database": "RETAIL_DWH",
-  "warehouse": "COMPUTE_WH",
-  "schema": "CORE",
-  "generated_at": "2026-06-18",
-  "data_model_summary": {
-    "tables_count": 10,
-    "columns_count": 223,
-    "constraints_present": true,
-    "constraints_notes": "Primary/unique constraints present; referential constraints present but FK column mappings not retrieved, so relationships are mapped by naming."
-  },
+  "schema_name": "CORE",
   "table_classification": [
     {
       "table_name": "DIM_CAMPAIGN",
@@ -17,7 +8,8 @@
       "confidence": "high",
       "key_candidates": [
         "CAMPAIGN_KEY"
-      ]
+      ],
+      "notes": "Declared PK present."
     },
     {
       "table_name": "DIM_CUSTOMER",
@@ -26,7 +18,8 @@
       "confidence": "high",
       "key_candidates": [
         "CUSTOMER_KEY"
-      ]
+      ],
+      "notes": "SCD-like columns (EFF_START_DATE, EFF_END_DATE, IS_CURRENT)."
     },
     {
       "table_name": "DIM_DATE",
@@ -35,7 +28,8 @@
       "confidence": "high",
       "key_candidates": [
         "DATE_KEY"
-      ]
+      ],
+      "notes": "Calendar dimension."
     },
     {
       "table_name": "DIM_GEOGRAPHY",
@@ -44,7 +38,8 @@
       "confidence": "high",
       "key_candidates": [
         "GEO_KEY"
-      ]
+      ],
+      "notes": "Geography dimension."
     },
     {
       "table_name": "DIM_PRODUCT",
@@ -53,7 +48,8 @@
       "confidence": "high",
       "key_candidates": [
         "PRODUCT_KEY"
-      ]
+      ],
+      "notes": "Product dimension."
     },
     {
       "table_name": "DIM_PROMOTION",
@@ -62,7 +58,8 @@
       "confidence": "high",
       "key_candidates": [
         "PROMO_KEY"
-      ]
+      ],
+      "notes": "Promotion dimension."
     },
     {
       "table_name": "DIM_STORE",
@@ -71,7 +68,8 @@
       "confidence": "high",
       "key_candidates": [
         "STORE_KEY"
-      ]
+      ],
+      "notes": "Store dimension."
     },
     {
       "table_name": "FACT_CAMPAIGN_PERFORMANCE",
@@ -80,7 +78,8 @@
       "confidence": "high",
       "key_candidates": [
         "PERF_KEY"
-      ]
+      ],
+      "notes": "Many metrics + multiple dimension keys."
     },
     {
       "table_name": "FACT_INVENTORY",
@@ -89,7 +88,8 @@
       "confidence": "high",
       "key_candidates": [
         "INVENTORY_KEY"
-      ]
+      ],
+      "notes": "Inventory measures + multiple dimension keys."
     },
     {
       "table_name": "FACT_SALES",
@@ -98,7 +98,8 @@
       "confidence": "high",
       "key_candidates": [
         "SALE_KEY"
-      ]
+      ],
+      "notes": "Sales measures + multiple dimension keys; has return fields."
     }
   ],
   "relationships": [
@@ -113,7 +114,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming (KEY_COLUMN_USAGE unavailable)."
     },
     {
       "from_table": "DIM_STORE",
@@ -126,7 +127,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "DIM_PROMOTION",
@@ -139,7 +140,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "FACT_SALES",
@@ -152,7 +153,20 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
+    },
+    {
+      "from_table": "FACT_SALES",
+      "from_columns": [
+        "RETURN_DATE_KEY"
+      ],
+      "to_table": "DIM_DATE",
+      "to_columns": [
+        "DATE_KEY"
+      ],
+      "relationship_type": "many-to-one",
+      "confidence": "low",
+      "basis": "Role-playing date key inferred by naming."
     },
     {
       "from_table": "FACT_SALES",
@@ -165,7 +179,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "FACT_SALES",
@@ -178,7 +192,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "FACT_SALES",
@@ -191,7 +205,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "FACT_SALES",
@@ -204,7 +218,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "FACT_SALES",
@@ -217,7 +231,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "FACT_SALES",
@@ -230,7 +244,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "FACT_INVENTORY",
@@ -243,7 +257,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "FACT_INVENTORY",
@@ -256,7 +270,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "FACT_INVENTORY",
@@ -269,7 +283,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "FACT_INVENTORY",
@@ -282,7 +296,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "FACT_CAMPAIGN_PERFORMANCE",
@@ -295,7 +309,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "FACT_CAMPAIGN_PERFORMANCE",
@@ -308,7 +322,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "FACT_CAMPAIGN_PERFORMANCE",
@@ -321,7 +335,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     },
     {
       "from_table": "FACT_CAMPAIGN_PERFORMANCE",
@@ -334,7 +348,7 @@
       ],
       "relationship_type": "many-to-one",
       "confidence": "medium",
-      "basis": "Declared FK exists (constraint-level); column mapping inferred from naming."
+      "basis": "Declared FK exists; column mapping inferred from naming."
     }
   ],
   "transformation_patterns": [
@@ -377,7 +391,7 @@
       ]
     },
     {
-      "pattern_type": "aggregation/metrics",
+      "pattern_type": "metrics",
       "examples": [
         "QUANTITY",
         "DISCOUNT_AMOUNT",
@@ -393,8 +407,16 @@
         "CPM",
         "CPA",
         "OPENING_STOCK",
-        "CLOSING_STOCK"
+        "CLOSING_STOCK",
+        "STOCK_VALUE_COST",
+        "STOCK_VALUE_RETAIL"
       ]
     }
-  ]
+  ],
+  "data_model_summary": {
+    "tables_count": 10,
+    "columns_count": 223,
+    "constraints_present": true,
+    "constraints_notes": "TABLE_CONSTRAINTS + REFERENTIAL_CONSTRAINTS returned; KEY_COLUMN_USAGE not accessible so FK column-level mappings are inferred via naming."
+  }
 }
