@@ -3,7 +3,7 @@
 ## Summary
 - **Tables**: 2
 - **Columns**: 30
-- **Constraints present**: yes
+- **Constraints present**: true
 - **Constraints notes**: TABLE_CONSTRAINTS returned PKs; KEY_COLUMN_USAGE not accessible, so PK/FK column mappings unavailable.
 
 ## Tables
