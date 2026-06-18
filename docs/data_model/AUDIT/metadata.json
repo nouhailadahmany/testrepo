@@ -1,0 +1,64 @@
+{
+  "database": "RETAIL_DWH",
+  "warehouse": "COMPUTE_WH",
+  "schema": "AUDIT",
+  "generated_at": "2026-06-18",
+  "data_model_summary": {
+    "tables_count": 2,
+    "columns_count": 30,
+    "constraints_present": true,
+    "constraints_notes": "PK constraints present; no referential constraints returned for this schema."
+  },
+  "table_classification": [
+    {
+      "table_name": "DQ_LOG",
+      "table_type": "BASE TABLE",
+      "classification": "FACT",
+      "confidence": "medium",
+      "key_candidates": [
+        "DQ_LOG_ID"
+      ]
+    },
+    {
+      "table_name": "LOAD_LOG",
+      "table_type": "BASE TABLE",
+      "classification": "FACT",
+      "confidence": "medium",
+      "key_candidates": [
+        "LOG_ID"
+      ]
+    }
+  ],
+  "relationships": [],
+  "transformation_patterns": [
+    {
+      "pattern_type": "metrics",
+      "examples": [
+        "ROWS_EXTRACTED",
+        "ROWS_LOADED",
+        "ROWS_REJECTED",
+        "ROWS_UPDATED",
+        "ROWS_CHECKED",
+        "ROWS_FAILED",
+        "FAILURE_RATE"
+      ]
+    },
+    {
+      "pattern_type": "timestamps",
+      "examples": [
+        "START_TIME",
+        "END_TIME",
+        "CREATED_AT",
+        "CHECKED_AT"
+      ]
+    },
+    {
+      "pattern_type": "keys",
+      "examples": [
+        "DQ_LOG_ID",
+        "LOG_ID",
+        "BATCH_ID"
+      ]
+    }
+  ]
+}
