@@ -183,3 +183,66 @@ Promotion and discount dimension linked to marketing campaigns
 | IS_LOYALTY_ONLY | BOOLEAN | is_loyalty_only | Is Loyalty Only | Indicates whether the promotion is restricted to loyalty members. |
 | CAMPAIGN_KEY | NUMBER(38,0) | campaign_key | Campaign Key | Surrogate key referencing the related campaign, when applicable. |
 | CREATED_AT | TIMESTAMP_NTZ(9) | created_at | Created At | Timestamp when the record was created. |
+
+
+## Store Dimension (`RETAIL_DWH.CORE.DIM_STORE`)
+
+Store and sales channel dimension for omnichannel reporting
+
+### Columns
+
+| Column | Data type | Standardized name | Business name | Description |
+|---|---|---|---|---|
+| STORE_KEY | NUMBER(38,0) | store_key | Store Key | Surrogate key that uniquely identifies a store record. |
+| STORE_ID | VARCHAR(20) | store_id | Store ID | Business/natural identifier for the store from the source system. |
+| STORE_NAME | VARCHAR(200) | store_name | Store Name | Human-readable store name. |
+| STORE_TYPE | VARCHAR(50) | store_type | Store Type | Classification of store type (e.g., flagship, outlet). |
+| CHANNEL | VARCHAR(50) | channel | Channel | Sales channel associated with the store (e.g., retail, online). |
+| FORMAT | VARCHAR(50) | format | Format | Store format descriptor (e.g., small, large). |
+| GEO_KEY | NUMBER(38,0) | geo_key | Geography Key | Surrogate key referencing the store geography. |
+| OPENING_DATE | DATE | opening_date | Opening Date | Date the store opened. |
+| CLOSING_DATE | DATE | closing_date | Closing Date | Date the store closed, if applicable. |
+| IS_ACTIVE | BOOLEAN | is_active | Is Active | Indicates whether the store is active. |
+| FLOOR_AREA_SQM | NUMBER(38,0) | floor_area_sqm | Floor Area (Sqm) | Store floor area in square meters. |
+| NUM_EMPLOYEES | NUMBER(38,0) | num_employees | Number of Employees | Number of employees working at the store. |
+| MANAGER_NAME | VARCHAR(100) | manager_name | Manager Name | Name of the store manager. |
+| PARTNER_NAME | VARCHAR(100) | partner_name | Partner Name | Name of the partner associated with the store, if applicable. |
+| TIER | VARCHAR(20) | tier | Tier | Tier classification of the store (e.g., A/B/C). |
+| CREATED_AT | TIMESTAMP_NTZ(9) | created_at | Created At | Timestamp when the record was created. |
+
+## Campaign Performance Fact (`RETAIL_DWH.CORE.FACT_CAMPAIGN_PERFORMANCE`)
+
+Daily campaign performance metrics — grain: campaign × date × channel
+
+### Columns
+
+| Column | Data type | Standardized name | Business name | Description |
+|---|---|---|---|---|
+| PERF_KEY | NUMBER(38,0) | perf_key | Performance Key | Surrogate key that uniquely identifies a campaign performance fact record. |
+| DATE_KEY | NUMBER(38,0) | date_key | Date Key | Surrogate key referencing the date of the performance record. |
+| CAMPAIGN_KEY | NUMBER(38,0) | campaign_key | Campaign Key | Surrogate key referencing the campaign. |
+| STORE_KEY | NUMBER(38,0) | store_key | Store Key | Surrogate key referencing the store/channel context, when applicable. |
+| GEO_KEY | NUMBER(38,0) | geo_key | Geography Key | Surrogate key referencing the geography context, when applicable. |
+| IMPRESSIONS | NUMBER(38,0) | impressions | Impressions | Number of ad impressions. |
+| REACH | NUMBER(38,0) | reach | Reach | Number of unique users reached. |
+| CLICKS | NUMBER(38,0) | clicks | Clicks | Number of clicks. |
+| VIDEO_VIEWS | NUMBER(38,0) | video_views | Video Views | Number of video views. |
+| LIKES | NUMBER(38,0) | likes | Likes | Number of likes. |
+| SHARES | NUMBER(38,0) | shares | Shares | Number of shares. |
+| COMMENTS | NUMBER(38,0) | comments | Comments | Number of comments. |
+| SAVES | NUMBER(38,0) | saves | Saves | Number of saves/bookmarks. |
+| SESSIONS | NUMBER(38,0) | sessions | Sessions | Number of sessions attributed to the campaign. |
+| ADD_TO_CARTS | NUMBER(38,0) | add_to_carts | Add to Carts | Number of add-to-cart events attributed to the campaign. |
+| CHECKOUTS | NUMBER(38,0) | checkouts | Checkouts | Number of checkout events attributed to the campaign. |
+| CONVERSIONS | NUMBER(38,0) | conversions | Conversions | Number of conversions attributed to the campaign. |
+| SPEND | NUMBER(14,4) | spend | Spend | Advertising spend amount for the record grain. |
+| REVENUE_ATTRIBUTED | NUMBER(14,4) | revenue_attributed | Revenue Attributed | Revenue attributed to the campaign for the record grain. |
+| ROAS | NUMBER(10,4) | roas | ROAS | Return on ad spend for the record grain. |
+| CTR | NUMBER(10,6) | ctr | CTR | Click-through rate for the record grain. |
+| CVR | NUMBER(10,6) | cvr | CVR | Conversion rate for the record grain. |
+| CPC | NUMBER(10,4) | cpc | CPC | Cost per click for the record grain. |
+| CPM | NUMBER(10,4) | cpm | CPM | Cost per thousand impressions for the record grain. |
+| CPA | NUMBER(10,4) | cpa | CPA | Cost per acquisition for the record grain. |
+| CHANNEL_BREAKDOWN | VARCHAR(50) | channel_breakdown | Channel Breakdown | Channel or sub-channel identifier for the performance record. |
+| CREATIVE_VERSION | VARCHAR(50) | creative_version | Creative Version | Creative variant/version identifier used for the campaign. |
+| CREATED_AT | TIMESTAMP_NTZ(9) | created_at | Created At | Timestamp when the record was created. |
