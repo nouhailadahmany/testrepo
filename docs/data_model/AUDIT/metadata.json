@@ -6,45 +6,44 @@
       "table_type": "BASE TABLE",
       "classification": "FACT",
       "confidence": "medium",
-      "key_candidates": [
+      "key_columns": [
         "DQ_LOG_ID"
       ],
-      "notes": "Log/metrics table with counts/rates/timestamps."
+      "metric_columns": [
+        "ROWS_CHECKED",
+        "ROWS_FAILED",
+        "FAILURE_RATE",
+        "THRESHOLD_PCT"
+      ],
+      "date_columns": [
+        "CHECKED_AT"
+      ],
+      "flag_columns": []
     },
     {
       "table_name": "LOAD_LOG",
       "table_type": "BASE TABLE",
       "classification": "FACT",
       "confidence": "medium",
-      "key_candidates": [
+      "key_columns": [
         "LOG_ID"
       ],
-      "notes": "Pipeline load metrics (rows_*, timestamps, status)."
+      "metric_columns": [
+        "ROWS_EXTRACTED",
+        "ROWS_LOADED",
+        "ROWS_REJECTED",
+        "ROWS_UPDATED"
+      ],
+      "date_columns": [
+        "START_TIME",
+        "END_TIME",
+        "CREATED_AT"
+      ],
+      "flag_columns": []
     }
   ],
   "relationships": [],
   "transformation_patterns": [
-    {
-      "pattern_type": "metrics",
-      "examples": [
-        "ROWS_EXTRACTED",
-        "ROWS_LOADED",
-        "ROWS_REJECTED",
-        "ROWS_UPDATED",
-        "ROWS_CHECKED",
-        "ROWS_FAILED",
-        "FAILURE_RATE"
-      ]
-    },
-    {
-      "pattern_type": "timestamps",
-      "examples": [
-        "START_TIME",
-        "END_TIME",
-        "CREATED_AT",
-        "CHECKED_AT"
-      ]
-    },
     {
       "pattern_type": "keys",
       "examples": [
@@ -52,13 +51,40 @@
         "LOG_ID",
         "BATCH_ID"
       ]
+    },
+    {
+      "pattern_type": "date",
+      "examples": [
+        "CHECKED_AT",
+        "START_TIME",
+        "END_TIME",
+        "CREATED_AT"
+      ]
+    },
+    {
+      "pattern_type": "aggregation",
+      "examples": [
+        "ROWS_CHECKED",
+        "ROWS_FAILED",
+        "FAILURE_RATE",
+        "ROWS_EXTRACTED",
+        "ROWS_LOADED"
+      ]
+    },
+    {
+      "pattern_type": "semi_structured",
+      "examples": [
+        "SAMPLE_FAILURES"
+      ]
     }
   ],
   "data_model_summary": {
     "tables_count": 2,
     "columns_count": 30,
     "constraints_present": true,
-    "constraints_notes": "TABLE_CONSTRAINTS returned PKs; KEY_COLUMN_USAGE not accessible, so PK/FK column mappings unavailable."
+    "notes": [
+      "Primary keys present per INFORMATION_SCHEMA.TABLE_CONSTRAINTS.",
+      "FK column mappings were not retrieved (KEY_COLUMN_USAGE unavailable), so relationships are not reported as declared."
+    ]
   }
 }
-bbhbhbhb
