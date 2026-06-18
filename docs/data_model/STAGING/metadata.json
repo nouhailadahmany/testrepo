@@ -1,14 +1,5 @@
 {
-  "database": "RETAIL_DWH",
-  "warehouse": "COMPUTE_WH",
-  "schema": "STAGING",
-  "generated_at": "2026-06-18",
-  "data_model_summary": {
-    "tables_count": 3,
-    "columns_count": 46,
-    "constraints_present": true,
-    "constraints_notes": "PK constraints present on each staging table; no referential constraints returned for this schema."
-  },
+  "schema_name": "STAGING",
   "table_classification": [
     {
       "table_name": "STG_CAMPAIGN_METRICS_RAW",
@@ -17,7 +8,8 @@
       "confidence": "low",
       "key_candidates": [
         "RAW_ID"
-      ]
+      ],
+      "notes": "Raw landing table; many numeric fields stored as TEXT; includes RAW_JSON and load/process columns."
     },
     {
       "table_name": "STG_INVENTORY_RAW",
@@ -26,7 +18,8 @@
       "confidence": "low",
       "key_candidates": [
         "RAW_ID"
-      ]
+      ],
+      "notes": "Raw landing table; measures stored as TEXT; includes RAW_JSON and load/process columns."
     },
     {
       "table_name": "STG_SALES_RAW",
@@ -35,48 +28,11 @@
       "confidence": "low",
       "key_candidates": [
         "RAW_ID"
-      ]
+      ],
+      "notes": "Raw landing table; measures stored as TEXT; includes RAW_JSON and load/process columns."
     }
   ],
-  "relationships": [
-    {
-      "from_table": "STG_SALES_RAW",
-      "from_columns": [
-        "PRODUCT_ID"
-      ],
-      "to_table": "STG_INVENTORY_RAW",
-      "to_columns": [
-        "PRODUCT_ID"
-      ],
-      "relationship_type": "join_candidate",
-      "confidence": "low",
-      "basis": "Shared natural key-like column PRODUCT_ID in raw staging tables."
-    },
-    {
-      "from_table": "STG_SALES_RAW",
-      "from_columns": [
-        "STORE_ID"
-      ],
-      "to_table": "STG_INVENTORY_RAW",
-      "to_columns": [
-        "STORE_ID"
-      ],
-      "relationship_type": "join_candidate",
-      "confidence": "low",
-      "basis": "Shared natural key-like column STORE_ID in raw staging tables."
-    },
-    {
-      "from_table": "STG_CAMPAIGN_METRICS_RAW",
-      "from_columns": [
-        "CAMPAIGN_ID"
-      ],
-      "to_table": "STG_SALES_RAW",
-      "to_columns": [],
-      "relationship_type": "join_candidate",
-      "confidence": "low",
-      "basis": "CAMPAIGN_ID present in campaign metrics staging; no corresponding column in STG_SALES_RAW, so no direct join inferred."
-    }
-  ],
+  "relationships": [],
   "transformation_patterns": [
     {
       "pattern_type": "raw_variant",
@@ -108,5 +64,11 @@
         "REPORT_DATE"
       ]
     }
-  ]
+  ],
+  "data_model_summary": {
+    "tables_count": 3,
+    "columns_count": 46,
+    "constraints_present": true,
+    "constraints_notes": "PK constraints present; KEY_COLUMN_USAGE not accessible so PK column mappings not confirmed beyond naming."
+  }
 }
