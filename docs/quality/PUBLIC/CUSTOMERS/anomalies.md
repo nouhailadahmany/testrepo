@@ -1,3 +1,5 @@
-# Anomalies — MY_DB.PUBLIC.CUSTOMERS
+# Anomalies — RETAIL_DWH.PUBLIC.CUSTOMERS
 
-No anomalies provided by the profiling payload.
+## Detected anomalies
+
+- EMAIL null percentage increased by **15%**
