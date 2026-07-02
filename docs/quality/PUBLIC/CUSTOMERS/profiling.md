@@ -1,15 +1,17 @@
-# Profiling — MY_DB.PUBLIC.CUSTOMERS
+# Profiling — RETAIL_DWH.PUBLIC.CUSTOMERS
 
-**Rows (profiled):** 12,345
+**Row count:** 12,543
 
-## Identified columns
-_No identified column metadata provided._
+## Columns
 
-## Key quality metrics
-_No key quality metrics provided._
+| Column | Type | Nullable | Distinct | Null % |
+|---|---|---:|---:|---:|
+| CUSTOMER_ID | NUMBER | false | 12,543 | 0.0% |
+| EMAIL | VARCHAR | true | — | 18.2% |
+| PHONE | VARCHAR | true | — | 42.7% |
 
-## Null analysis
-_No null analysis provided._
+## Duplicates
 
-## Duplication
-_No duplication metrics provided._
+| Key column | Duplicate count |
+|---|---:|
+| CUSTOMER_ID | 0 |
