@@ -1,6 +1,9 @@
-# Freshness — MY_DB.PUBLIC.CUSTOMERS
+# Freshness — RETAIL_DWH.PUBLIC.CUSTOMERS
 
-_No freshness information provided._
+| Metric | Value |
+|---|---|
+| Status | Healthy |
+| Last update | `2026-07-01 08:15:00` |
 
 ## Notes
-If you expect freshness reporting, include fields such as `as_of_ts`, `max_event_ts`, `lag_seconds`, and/or SLA thresholds in the profiling payload.
+- “Healthy” indicates the table update timestamp is within the expected SLA/window.
