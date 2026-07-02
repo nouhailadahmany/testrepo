@@ -1,8 +1,12 @@
-# PII — MY_DB.PUBLIC.CUSTOMERS
+# PII — RETAIL_DWH.PUBLIC.CUSTOMERS
 
 ## Detected / declared PII columns
-None.
+
+| Column | Type | Notes |
+|---|---|---|
+| EMAIL | VARCHAR | PII flag present in profiling payload |
+| PHONE | VARCHAR | PII flag present in profiling payload |
 
 ## Handling guidance
-- Verify that no direct identifiers (e.g., email, phone, national id) exist in this table.
-- If PII is later detected, ensure masking/tokenization and access controls are enforced.
+- Treat these fields as **sensitive**: restrict access, apply masking/tokenization where appropriate.
+- Validate downstream extracts (e.g., BI exports) to avoid unintended exposure.
