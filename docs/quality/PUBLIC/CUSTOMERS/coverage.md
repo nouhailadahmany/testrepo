@@ -5,5 +5,5 @@
 | Column | Present in payload | Has type | Has null% | Has distinct_count | PII flagged |
 |---|---:|---:|---:|---:|---:|
 | CUSTOMER_ID | yes | yes | yes | yes | no |
-| EMAIL | yes | yes | yes | no | yes |
-| PHONE | yes | yes | yes | no | yes |
+| EMAIL | yes | yes | yes | yes | yes |
+| PHONE | yes | yes | yes | yes | yes |
