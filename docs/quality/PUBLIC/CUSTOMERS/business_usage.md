@@ -6,6 +6,3 @@
 ## Common joins
 - SALES
 - ORDERS
-
-## Notes
-This table is likely used for customer-level rollups, segmentation, and order history enrichment.
