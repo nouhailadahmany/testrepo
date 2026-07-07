@@ -1,9 +1,16 @@
 # Rule Violations — RETAIL_DWH.PUBLIC.CUSTOMERS
 
-## Current violations
+## Findings (from quality flags)
 
-1. PHONE contains NULL values above threshold
+| Severity | Category | Column | Message |
+|---|---|---|---|
+| high | pii | EMAIL | Sensitive PII columns detected. |
+| medium | nulls | PHONE | PHONE contains more than 5% NULL values. |
+| low | duplicates | CUSTOMER_ID | 12 duplicate CUSTOMER_ID values detected. |
+| low | freshness | LAST_UPDATED | Table refreshed within SLA. |
 
-## Suggested remediation
-- Validate expected null threshold for PHONE.
-- If required, enforce not-null at capture or add enrichment/backfill.
+## Duplicates
+- **Duplicate row count:** 12
+- **Duplicate rate:** 0.001
+- **Dedupe keys:** CUSTOMER_ID
+- **Examples:** CUSTOMER_ID = 4128; 9911
