@@ -1,11 +1,42 @@
-# Column Health — RETAIL_DWH.PUBLIC.CUSTOMERS
+# Column Health — PUBLIC.CUSTOMERS
 
-Heuristic health by column based on nulls, uniqueness, and flags.
+## Column Health Heatmaps
 
-| Column | Health | Drivers |
-|---|---|---|
-| CUSTOMER_ID | Good | Uniqueness strong; low duplicate rate (0.1%). |
-| EMAIL | Good | Low null rate (1.87%); anomaly spike observed—monitor. |
-| PHONE | Fair | Null rate 7.13% (above 5% threshold); outlier anomaly. |
-| COUNTRY | Good | Very low null rate (0.03%). |
-| LAST_UPDATED | Good | Non-null; supports freshness SLA. |
+Legend (deterministic):
+- 🟩 Good
+- 🟨 Watch
+- 🟥 Poor
+- ⬜ No data
+
+Heuristic mapping (deterministic and input-bound):
+- **Completeness** from `null_rate`: 🟩 (<=1%), 🟨 (>1% and <=5%), 🟥 (>5%)
+- **Uniqueness** only evaluated for columns explicitly described as unique identifier in provided descriptions (here: `CUSTOMER_ID`); otherwise ⬜
+- **Validity/Consistency** per-column not provided → ⬜
+- **PII** from `pii_columns`
+
+| Column | Completeness | Uniqueness | Validity | Consistency | Freshness indicator | PII risk |
+|---|---|---|---|---|---|---|
+| CUSTOMER_ID | ⬜ | 🟩 | ⬜ | ⬜ | ⬜ | ⬜ |
+| EMAIL | 🟨 | ⬜ | ⬜ | ⬜ | ⬜ | 🟥 |
+| PHONE | 🟥 | ⬜ | ⬜ | ⬜ | ⬜ | 🟥 |
+| COUNTRY | 🟩 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| LAST_UPDATED | 🟩 | ⬜ | ⬜ | ⬜ | 🟩 | ⬜ |
+
+## PII Risk Indicators
+
+| Column | Classification |
+|---|---|
+| EMAIL | PII (sensitive) |
+| PHONE | PII (sensitive) |
+
+## Duplicate Risk
+
+| Key | Signal |
+|---|---|
+| CUSTOMER_ID | 12 duplicates detected (see `duplication`) |
+
+## Freshness Indicators
+
+| Column | Signal |
+|---|---|
+| LAST_UPDATED | Last updated `2026-07-06T17:42:51Z`; max lag 4 hours |
