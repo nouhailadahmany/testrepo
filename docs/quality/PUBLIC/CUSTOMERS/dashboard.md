@@ -1,18 +1,17 @@
 # Dashboard — RETAIL_DWH.PUBLIC.CUSTOMERS
 
 ## At-a-glance
-
 - **Rows:** 12,543
-- **Freshness:** Healthy (`2026-07-01 08:15:00`)
-- **Key:** CUSTOMER_ID (duplicates: 0)
+- **Overall quality score:** 93 / 100
+- **Freshness:** last updated `2026-07-06T17:42:51Z` (SLA max lag: 4h)
+- **Duplicates:** 12 duplicate rows on key `CUSTOMER_ID`
 - **PII:** EMAIL, PHONE
-- **Open rule violations:** 1
-- **Active anomalies:** 1
+- **Open quality flags:** 4 (high: 1, medium: 1, low: 2)
+- **Anomalies:** 2
 
 ```mermaid
 flowchart TB
   A[Source systems] --> B[Ingestion / ELT]
   B --> C[(RETAIL_DWH.PUBLIC.CUSTOMERS)]
-  C --> D[Downstream joins: SALES]
-  C --> E[Downstream joins: ORDERS]
+  C --> D[Downstream joins / marts]
 ```
