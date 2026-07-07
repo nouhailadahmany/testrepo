@@ -1,20 +1,22 @@
-# Recommendations — RETAIL_DWH.PUBLIC.CUSTOMERS
+# Recommendations — PUBLIC.CUSTOMERS
 
-## Highest-impact actions
-1. Reduce `PHONE` null rate (currently 7.13%)
-   - Confirm if PHONE is required; if yes, enforce capture at source or backfill from trusted systems.
-   - Add alerting rule for PHONE null% > 5%.
+## Recommendations
 
-2. Investigate `EMAIL` null-rate spike
-   - Validate upstream changes, ingestion filters, and recent application/schema releases.
+| Priority | Recommendation | Trigger (source data) |
+|---|---|---|
+| High | Enforce PII governance controls (masking, RBAC, audit) for `EMAIL`, `PHONE` | `pii_columns` + high severity PII flag |
+| Medium | Reduce `PHONE` NULL rate; investigate ingestion/collection coverage | `PHONE` null_rate=0.0713 + medium nulls flag + anomaly outlier |
+| Low | Review duplicate handling on `CUSTOMER_ID`; confirm upstream dedupe logic | `duplication.duplicate_row_count`=12 |
 
-3. PII controls
-   - Ensure EMAIL/PHONE are masked in non-prod and restricted in prod.
+## Quality Improvements
 
-## Monitoring
-- Track daily null rates for EMAIL and PHONE.
-- Track duplicates on `CUSTOMER_ID` (current duplicates: 12 rows; rate 0.001).
+No data available (no root-cause diagnostics provided beyond flags/anomalies).
 
-## Notes
-- Overall table quality is considered **GOOD**.
-- Monitoring recommended for PHONE null rate.
+## Monitoring Suggestions
+
+- Monitor `PHONE` null rate against expected max (0.05) as indicated in anomaly details.
+- Track `EMAIL` null-rate changes (spike noted: +3.2%).
+
+## Governance Recommendations
+
+- Maintain PII inventory for `EMAIL` and `PHONE` and ensure least-privilege access.
