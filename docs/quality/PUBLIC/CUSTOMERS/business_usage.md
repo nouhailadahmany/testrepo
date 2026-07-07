@@ -1,8 +1,8 @@
 # Business Usage — RETAIL_DWH.PUBLIC.CUSTOMERS
 
-## Classification
-- **Type:** Dimension
+## Summary
+- **Type:** Dimension / master data
+- Commonly joined to: SALES, ORDERS
 
-## Common joins
-- SALES
-- ORDERS
+## Notes
+- EMAIL and PHONE are PII; ensure masking in analytics consumption layers.
