@@ -1,16 +1,35 @@
-# Quality Score — RETAIL_DWH.PUBLIC.CUSTOMERS
+# Quality Score — PUBLIC.CUSTOMERS
 
-## Summary
-- **Overall score:** 93 / 100
+## Completeness Score
 
-| Component | Score |
+| Metric | Value |
 |---|---:|
 | Completeness | 95 |
-| Uniqueness | 100 |
+
+## Validity Score
+
+| Metric | Value |
+|---|---:|
 | Validity | 90 |
+
+## Uniqueness Score
+
+| Metric | Value |
+|---|---:|
+| Uniqueness | 100 |
+
+## Consistency Score
+
+| Metric | Value |
+|---|---:|
 | Consistency | 88 |
 
-## Drivers
-- Strong uniqueness on `CUSTOMER_ID`.
-- Validity/consistency impacted by data hygiene issues (see rule violations).
-- Completeness impacted by `PHONE` null rate (7.13%).
+## Freshness Score
+
+No data available (no numeric freshness score provided in `key_quality_metrics`).
+
+## Overall Composite Score
+
+| Metric | Value |
+|---|---:|
+| Overall score | **93** |
