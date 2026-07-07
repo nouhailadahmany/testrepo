@@ -1,17 +1,20 @@
 # Recommendations — RETAIL_DWH.PUBLIC.CUSTOMERS
 
 ## Highest-impact actions
-1. **Reduce PHONE null rate (42.7%)**
-   - Confirm whether PHONE is truly optional. If not, enforce capture at source or backfill from trusted systems.
-   - Add a rule with an agreed threshold (e.g., null% ≤ 10%) and alerting.
+1. Reduce `PHONE` null rate (currently 7.13%)
+   - Confirm if PHONE is required; if yes, enforce capture at source or backfill from trusted systems.
+   - Add alerting rule for PHONE null% > 5%.
 
-2. **Investigate EMAIL null spike (+15%)**
-   - Check upstream changes, ingestion filters, and recent schema/application releases.
-   - Compare null% by load batch/date if available.
+2. Investigate `EMAIL` null-rate spike
+   - Validate upstream changes, ingestion filters, and recent application/schema releases.
 
-3. **PII controls**
+3. PII controls
    - Ensure EMAIL/PHONE are masked in non-prod and restricted in prod.
 
-## Suggested rules to add
-- `PHONE` null percentage ≤ threshold.
-- `CUSTOMER_ID` uniqueness (no duplicates).
+## Monitoring
+- Track daily null rates for EMAIL and PHONE.
+- Track duplicates on `CUSTOMER_ID` (current duplicates: 12 rows; rate 0.001).
+
+## Notes
+- Overall table quality is considered **GOOD**.
+- Monitoring recommended for PHONE null rate.
