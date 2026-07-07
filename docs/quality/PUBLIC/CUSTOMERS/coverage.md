@@ -1,11 +1,33 @@
-# Coverage — RETAIL_DWH.PUBLIC.CUSTOMERS
+# Coverage — PUBLIC.CUSTOMERS
 
-## Column coverage snapshot
+## Profiling Coverage
 
-| Column | Present in payload | Has type | Has null% | Has distinct_count | PII flagged |
-|---|:---:|:---:|:---:|:---:|:---:|
-| CUSTOMER_ID | yes | yes | yes | yes | no |
-| EMAIL | yes | yes | yes | yes | yes |
-| PHONE | yes | yes | yes | yes | yes |
-| COUNTRY | yes | yes | yes | yes | no |
-| LAST_UPDATED | yes | yes | yes | yes | no |
+| Area | Status | Evidence |
+|---|---|---|
+| Row count | ✅ | `row_count` provided |
+| Column profiling | ✅ | `identified_columns` provided |
+| Null analysis | ✅ | `null_analysis` provided |
+| Duplicate analysis | ✅ | `duplication` provided |
+
+## Rule Coverage
+
+| Area | Status | Evidence |
+|---|---|---|
+| Constraint checks | ⛔ | No explicit constraint outputs provided |
+| Duplicate rules | ✅ | Duplicate metrics + dedupe keys provided |
+| Validity/domain rules | ⛔ | No invalid-value metrics provided |
+
+## PII Coverage
+
+| Area | Status | Evidence |
+|---|---|---|
+| PII column detection | ✅ | `pii_columns` provided |
+| Risk tiering | ⛔ | Not provided |
+
+## Freshness Coverage
+
+| Area | Status | Evidence |
+|---|---|---|
+| Timestamp column | ✅ | `freshness.timestamp_column` provided |
+| Timeline | ✅ | `freshness.timeline` provided |
+| SLA evaluation | ✅ (flag-driven) | "Table refreshed within SLA." |
