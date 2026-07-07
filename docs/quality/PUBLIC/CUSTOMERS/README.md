@@ -9,21 +9,20 @@
 
 | Area | Status / Highlights | Report |
 |---|---|---|
-| Freshness | **Healthy** (last update: `2026-07-01 08:15:00`) | [freshness](./freshness.md) |
-| Nulls | EMAIL nulls **18.2%**; PHONE nulls **42.7%** | [null analysis](./null_analysis.md) |
-| Duplicates | CUSTOMER_ID duplicates: **0** | [duplicates](./duplicates.md) |
-| PII | Detected PII columns: **EMAIL, PHONE** | [pii](./pii.md) |
-| Rule violations | 1 finding | [rule violations](./rule_violations.md) |
-| Anomalies | 1 detected | [anomalies](./anomalies.md) |
-| Business usage | Dimension; joined with SALES, ORDERS | [business usage](./business_usage.md) |
+| Freshness | **Healthy** (last updated: `2026-07-06T17:42:51Z`, SLA max lag: 4h) | [freshness](./freshness.md) |
+| Quality score | **93 / 100** (Completeness 95, Uniqueness 100, Validity 90, Consistency 88) | [quality score](./quality_score.md) |
+| Nulls | EMAIL nulls **1.87%**; PHONE nulls **7.13%** | [null analysis](./null_analysis.md) |
+| Duplicates | Duplicate rows: **12** (dedupe key: CUSTOMER_ID) | [rule violations](./rule_violations.md#duplicates) |
+| PII | **PII detected:** EMAIL, PHONE | [pii](./pii.md) |
+| Anomalies | 2 detected (PHONE null-rate outlier; EMAIL null-rate spike) | [anomalies](./anomalies.md) |
+| Column health | Mixed (PHONE impacted by nulls) | [column health](./column_health.md) |
 | Coverage | Column coverage snapshot | [coverage](./coverage.md) |
-| Overall quality | Computed score + drivers | [quality score](./quality_score.md) |
+| Recommendations | Monitoring + remediation actions | [recommendations](./recommendations.md) |
 
 ## Contents
 - [dashboard](./dashboard.md)
 - [profiling](./profiling.md)
 - [null analysis](./null_analysis.md)
-- [duplicates](./duplicates.md)
 - [freshness](./freshness.md)
 - [quality score](./quality_score.md)
 - [rule violations](./rule_violations.md)
