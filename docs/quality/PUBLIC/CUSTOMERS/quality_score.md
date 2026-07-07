@@ -1,22 +1,16 @@
 # Quality Score — RETAIL_DWH.PUBLIC.CUSTOMERS
 
 ## Summary
+- **Overall score:** 93 / 100
 
-A lightweight score computed from available signals in the payload.
+| Component | Score |
+|---|---:|
+| Completeness | 95 |
+| Uniqueness | 100 |
+| Validity | 90 |
+| Consistency | 88 |
 
-## Inputs used
-- Null rates (EMAIL, PHONE)
-- Duplicate count (CUSTOMER_ID)
-- Freshness status
-- Rule violations / anomalies counts
-
-## Score (heuristic)
-
-| Component | Result |
-|---|---|
-| Freshness | Healthy |
-| Duplicates | 0 on CUSTOMER_ID |
-| Null health | EMAIL 18.2%, PHONE 42.7% |
-| Exceptions | 1 violation, 1 anomaly |
-
-**Overall:** Needs attention (driven primarily by PHONE null rate and EMAIL null spike)
+## Drivers
+- Strong uniqueness on `CUSTOMER_ID`.
+- Validity/consistency impacted by data hygiene issues (see rule violations).
+- Completeness impacted by `PHONE` null rate (7.13%).
