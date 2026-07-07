@@ -11,7 +11,7 @@
 |---|---|---|
 | Freshness | **Healthy** (last update: `2026-07-01 08:15:00`) | [freshness](./freshness.md) |
 | Nulls | EMAIL nulls **18.2%**; PHONE nulls **42.7%** | [null analysis](./null_analysis.md) |
-| Duplicates | CUSTOMER_ID duplicates: **0** | [profiling](./profiling.md) |
+| Duplicates | CUSTOMER_ID duplicates: **0** | [duplicates](./duplicates.md) |
 | PII | Detected PII columns: **EMAIL, PHONE** | [pii](./pii.md) |
 | Rule violations | 1 finding | [rule violations](./rule_violations.md) |
 | Anomalies | 1 detected | [anomalies](./anomalies.md) |
@@ -23,6 +23,7 @@
 - [dashboard](./dashboard.md)
 - [profiling](./profiling.md)
 - [null analysis](./null_analysis.md)
+- [duplicates](./duplicates.md)
 - [freshness](./freshness.md)
 - [quality score](./quality_score.md)
 - [rule violations](./rule_violations.md)
